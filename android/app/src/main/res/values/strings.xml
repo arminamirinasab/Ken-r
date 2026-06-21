@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  DEFAULT / PRIMARY locale = Persian (fa). See ROADMAP.md §12.
+  This file is the fallback for every locale; English lives in values-en/.
+  No hardcoded user-facing strings anywhere — add here AND in values-en/.
+-->
+<resources>
+    <string name="app_name">کِنار</string>
+    <string name="app_tagline">همیشه کنارت</string>
+
+    <!-- Onboarding / pairing -->
+    <string name="pair_title">کنار هم باشید</string>
+    <string name="pair_subtitle">با یک نفر، یک فضای خصوصی مشترک بسازید</string>
+    <string name="pair_create_invite">ساخت کد دعوت</string>
+    <string name="pair_enter_code">کد دعوت را وارد کنید</string>
+    <string name="pair_accept">اتصال</string>
+    <string name="pair_your_code">کد دعوت شما</string>
+    <string name="pair_share_code">این کد را برای او بفرستید</string>
+    <string name="pair_connected">شما اکنون کنار هم هستید 💞</string>
+    <string name="pair_disconnect">پایان اتصال</string>
+    <string name="pair_empty_state">هنوز با کسی متصل نیستید</string>
+
+    <!-- Mood widget -->
+    <string name="mood_title">حال دلت</string>
+    <string name="mood_happy">شاد</string>
+    <string name="mood_sad">غمگین</string>
+    <string name="mood_tired">خسته</string>
+    <string name="mood_loving">عاشق</string>
+    <string name="mood_angry">عصبانی</string>
+    <string name="mood_waiting">در انتظار حال او…</string>
+
+    <!-- Love Tap widget -->
+    <string name="love_i_love_you">دوستت دارم</string>
+    <string name="love_i_miss_you">دلم برات تنگ شده</string>
+    <string name="love_good_night">شب بخیر</string>
+    <string name="love_good_morning">صبح بخیر</string>
+    <string name="love_caught_it">گرفتمش 💛</string>
+
+    <!-- Settings -->
+    <string name="settings_title">تنظیمات</string>
+    <string name="settings_language">زبان</string>
+    <string name="settings_language_fa">فارسی</string>
+    <string name="settings_language_en">English</string>
+    <string name="settings_theme">پوسته</string>
+    <string name="settings_battery_whitelist">اجازهٔ اجرا در پس‌زمینه</string>
+    <string name="settings_battery_whitelist_desc">برای دریافت به‌موقع، کِنار را از بهینه‌سازی باتری مستثنا کنید</string>
+
+    <!-- Errors -->
+    <string name="error_generic">خطایی رخ داد</string>
+    <string name="error_network">اتصال به اینترنت برقرار نیست</string>
+    <string name="error_invite_invalid">کد دعوت نامعتبر است</string>
+    <string name="error_invite_expired">کد دعوت منقضی شده است</string>
+</resources>

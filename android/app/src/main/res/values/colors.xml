@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand seed. Warm, intimate. Compose theme (ui/theme) is authoritative. -->
+    <color name="kenar_rose">#E8657F</color>
+    <color name="ic_launcher_background">#E8657F</color>
+</resources>

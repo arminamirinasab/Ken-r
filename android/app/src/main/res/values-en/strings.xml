@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- English (en). Parallel to the Persian default in values/. Keep keys in sync. -->
+<resources>
+    <string name="app_name">Kenâr</string>
+    <string name="app_tagline">Always beside you</string>
+
+    <!-- Onboarding / pairing -->
+    <string name="pair_title">Be beside each other</string>
+    <string name="pair_subtitle">Create a private shared space with one person</string>
+    <string name="pair_create_invite">Create invite code</string>
+    <string name="pair_enter_code">Enter invite code</string>
+    <string name="pair_accept">Connect</string>
+    <string name="pair_your_code">Your invite code</string>
+    <string name="pair_share_code">Send this code to them</string>
+    <string name="pair_connected">You are now beside each other 💞</string>
+    <string name="pair_disconnect">Disconnect</string>
+    <string name="pair_empty_state">You are not connected with anyone yet</string>
+
+    <!-- Mood widget -->
+    <string name="mood_title">Your mood</string>
+    <string name="mood_happy">Happy</string>
+    <string name="mood_sad">Sad</string>
+    <string name="mood_tired">Tired</string>
+    <string name="mood_loving">Loving</string>
+    <string name="mood_angry">Angry</string>
+    <string name="mood_waiting">Waiting for their mood…</string>
+
+    <!-- Love Tap widget -->
+    <string name="love_i_love_you">I love you</string>
+    <string name="love_i_miss_you">I miss you</string>
+    <string name="love_good_night">Good night</string>
+    <string name="love_good_morning">Good morning</string>
+    <string name="love_caught_it">Caught it 💛</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_language">Language</string>
+    <string name="settings_language_fa">فارسی</string>
+    <string name="settings_language_en">English</string>
+    <string name="settings_theme">Theme</string>
+    <string name="settings_battery_whitelist">Allow background activity</string>
+    <string name="settings_battery_whitelist_desc">Exclude Kenâr from battery optimization for timely updates</string>
+
+    <!-- Errors -->
+    <string name="error_generic">Something went wrong</string>
+    <string name="error_network">No internet connection</string>
+    <string name="error_invite_invalid">Invalid invite code</string>
+    <string name="error_invite_expired">Invite code has expired</string>
+</resources>
