@@ -1,0 +1,48 @@
+# ---- Secrets / env ----
+*.env
+.env
+.env.*
+!.env.example
+*.local
+secrets/
+config.local.*
+
+# ---- Go (backend) ----
+/backend/bin/
+/backend/tmp/
+*.exe
+*.test
+*.out
+vendor/
+coverage.out
+
+# ---- Android / Gradle ----
+*.iml
+.gradle/
+/android/local.properties
+/android/.idea/
+/android/build/
+/android/app/build/
+/android/captures/
+/android/.cxx/
+/android/**/build/
+*.apk
+*.aab
+*.keystore
+*.jks
+!debug.keystore
+
+# ---- IDE / OS ----
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# ---- Docker / data volumes ----
+/infra/data/
+/infra/**/data/
+
+# ---- Misc ----
+*.log
+node_modules/
