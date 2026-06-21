@@ -168,25 +168,25 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 ### Foundation
 - [x] Create ROADMAP.md
 - [x] Git init (branch `main`)
-- [~] Repo scaffold (backend + android + infra) with bilingual i18n in place
-- [ ] README with setup/run instructions
-- [ ] docs/ARCHITECTURE.md + ADRs
-- [ ] infra: docker-compose (Postgres, Redis, MinIO), env templates
-- [ ] Backend: config loader, structured logging, health endpoint
-- [ ] Backend: i18n catalog loader (fa/en) + locale middleware
-- [ ] Backend ports: PushProvider (Pushe), SMSProvider (Kavenegar)
-- [ ] Android: gradle scaffold, Compose + Glance deps, Hilt/DI
-- [ ] Android: string resources fa (default) + en; RTL config; locale switch
+- [x] Repo scaffold (backend + android + infra) with bilingual i18n in place
+- [x] README with setup/run instructions
+- [x] docs/ARCHITECTURE.md (ADRs still TODO)
+- [x] infra: docker-compose (Postgres, Redis, MinIO), env templates
+- [x] Backend: config loader, structured logging, health endpoint
+- [x] Backend: i18n catalog loader (fa/en) + locale middleware
+- [x] Backend ports: PushProvider (Pushe), SMSProvider (Kavenegar) — interfaces defined
+- [x] Android: gradle scaffold, Compose + Glance deps, Hilt/DI
+- [x] Android: string resources fa (default) + en; RTL config; locale switch
 
 ### Real-time backbone
-- [ ] Postgres schema + migrations (users, pairs, invites, widget_state, events)
+- [~] Postgres schema (users, pairs, invites, widget_state, devices) — init SQL done; migration tooling TODO
 - [ ] WebSocket hub (connect/auth/presence) + Redis pub/sub fan-out
 - [ ] Pushe wake path when socket absent
-- [ ] Generic widget-state event model (write → publish → deliver)
+- [~] Generic widget-state event model — `ports.Event` + `widget_state` table done; publish→deliver wiring TODO
 
 ### MVP Phase 1 features
 - [ ] Auth: phone OTP (Kavenegar) + session/JWT
-- [ ] Pair System: invite code, accept, shared space, disconnect
+- [~] Pair System: invite code, accept, shared space, disconnect — domain + use cases + tests done; HTTP handlers + Postgres repos TODO
 - [ ] Mood Widget (simplest end-to-end vertical slice first)
 - [ ] Love Tap Widget (+ tap-back loop)
 - [ ] Shared Drawing Widget
@@ -218,5 +218,22 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 
 ## 13. Session Log
 
-- **2026-06-22** — Session 1: Created ROADMAP.md, git init on `main`. Began repo
-  scaffold (backend/android/infra) with bilingual i18n structure. (in progress)
+- **2026-06-22** — Session 1: Created ROADMAP.md, git init on `main`. Completed
+  foundation scaffold:
+  - infra: docker-compose (Postgres/Redis/MinIO/backend), `.env.example`,
+    Postgres init schema (users, pairs, invites, widget_state, devices).
+  - backend (Go, stdlib-only foundation): config, structured logging, bilingual
+    i18n bundle (+tests), `domain/pair` entities & invite codes (+tests),
+    `ports` (repos, SMS/Push/event interfaces), `app/pairing` use cases
+    (+tests), `adapters/httpapi` router + locale middleware + health/locale
+    routes, Dockerfile.
+  - android: Gradle (Kotlin DSL + version catalog), Compose + Glance + Hilt,
+    R8 release config, fa-default/en string resources, RTL + locales_config,
+    in-app LocaleManager, theme tokens, bilingual landing, Mood Glance widget
+    vertical slice (+ Mood unit test), adaptive icon.
+  - docs: README + docs/ARCHITECTURE.md.
+  - 4 commits on `main`.
+  **Next session:** pick up the real-time backbone — wire Postgres repos for the
+  pairing use cases, add HTTP handlers for invite create/accept/disconnect, then
+  the Redis pub/sub + WebSocket hub and the Mood end-to-end slice (act → publish
+  → deliver → Glance update). Then phone OTP auth.
