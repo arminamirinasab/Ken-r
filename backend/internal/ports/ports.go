@@ -5,9 +5,16 @@ package ports
 
 import (
 	"context"
+	"errors"
+	"time"
 
 	"github.com/kenar/backend/internal/domain/pair"
+	"github.com/kenar/backend/internal/domain/widget"
 )
+
+// ErrCodeCollision is returned by InviteRepo.Create when the generated code
+// already exists, signalling the pairing service to retry with a fresh code.
+var ErrCodeCollision = errors.New("invite code collision")
 
 // --- Persistence ports ---
 
@@ -44,6 +51,33 @@ type Device struct {
 	UserID    string
 	Provider  string
 	PushToken string
+}
+
+// WidgetRepo persists the latest widget state per (pair, kind, author). The
+// server stores the opaque E2E blob without inspecting it.
+type WidgetRepo interface {
+	// Save upserts the author's state for a widget kind, assigning an ID on
+	// first write and bumping Version on each subsequent write.
+	Save(ctx context.Context, st widget.State) (widget.State, error)
+	// LatestByPairKind returns the current state of every author in the pair
+	// for the given widget kind (e.g. both partners' moods).
+	LatestByPairKind(ctx context.Context, pairID string, kind widget.Kind) ([]widget.State, error)
+}
+
+// OTPRepo stores at most one pending login code per phone, with an expiry.
+type OTPRepo interface {
+	Put(ctx context.Context, phone, code string, expiresAt time.Time) error
+	// Get returns auth.ErrOTPNotFound when no code is pending for the phone.
+	Get(ctx context.Context, phone string) (code string, expiresAt time.Time, err error)
+	Delete(ctx context.Context, phone string) error
+}
+
+// SessionRepo issues and resolves opaque bearer session tokens.
+type SessionRepo interface {
+	Create(ctx context.Context, userID string, expiresAt time.Time) (token string, err error)
+	// UserID returns auth.ErrSessionInvalid when the token is unknown/expired.
+	UserID(ctx context.Context, token string) (userID string, err error)
+	Delete(ctx context.Context, token string) error
 }
 
 // --- Provider ports (swappable per Iran-context constraints) ---

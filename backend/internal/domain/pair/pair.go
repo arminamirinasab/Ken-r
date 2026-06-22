@@ -10,13 +10,14 @@ import (
 
 // Domain errors. Adapters map these to transport-level responses + i18n keys.
 var (
-	ErrAlreadyPaired   = errors.New("user already in an active pair")
-	ErrInviteNotFound  = errors.New("invite not found")
-	ErrInviteExpired   = errors.New("invite expired")
-	ErrInviteUsed      = errors.New("invite already used")
-	ErrSelfPairing     = errors.New("cannot accept your own invite")
-	ErrPairNotFound    = errors.New("pair not found")
-	ErrNotMember       = errors.New("user is not a member of this pair")
+	ErrAlreadyPaired  = errors.New("user already in an active pair")
+	ErrInviteNotFound = errors.New("invite not found")
+	ErrInviteExpired  = errors.New("invite expired")
+	ErrInviteUsed     = errors.New("invite already used")
+	ErrSelfPairing    = errors.New("cannot accept your own invite")
+	ErrPairNotFound   = errors.New("pair not found")
+	ErrNotMember      = errors.New("user is not a member of this pair")
+	ErrUserNotFound   = errors.New("user not found")
 )
 
 // Locale is the user's preferred language. Persian is primary.

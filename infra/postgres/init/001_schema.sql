@@ -75,6 +75,15 @@ CREATE TABLE IF NOT EXISTS widget_state (
 CREATE INDEX IF NOT EXISTS idx_widget_state_pair_kind
     ON widget_state(pair_id, widget_kind, created_at DESC);
 
+-- One latest row per (pair, kind, author). The Postgres WidgetRepo upserts:
+--   INSERT ... ON CONFLICT (pair_id, widget_kind, author_id)
+--   DO UPDATE SET payload = EXCLUDED.payload, version = widget_state.version + 1,
+--                 updated_at = now();
+-- so each partner keeps exactly one current state per widget (e.g. their mood),
+-- matching the in-memory WidgetRepo used in tests and local dev.
+CREATE UNIQUE INDEX IF NOT EXISTS uq_widget_state_latest
+    ON widget_state(pair_id, widget_kind, author_id);
+
 -- ---------------------------------------------------------------------------
 -- Device registrations: where to wake a user (Pushe token) + last seen.
 -- ---------------------------------------------------------------------------

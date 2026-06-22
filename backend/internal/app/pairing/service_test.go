@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/kenar/backend/internal/domain/pair"
+	"github.com/kenar/backend/internal/ports"
 )
 
 // --- in-memory fakes ---
@@ -16,7 +17,7 @@ func newMemInvites() *memInvites { return &memInvites{m: map[string]pair.Invite{
 
 func (r *memInvites) Create(_ context.Context, inv pair.Invite) error {
 	if _, ok := r.m[inv.Code]; ok {
-		return ErrCodeCollision
+		return ports.ErrCodeCollision
 	}
 	r.m[inv.Code] = inv
 	return nil

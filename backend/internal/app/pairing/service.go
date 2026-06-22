@@ -64,7 +64,7 @@ func (s *Service) CreateInvite(ctx context.Context, inviterID string) (pair.Invi
 		if err == nil {
 			return inv, nil
 		}
-		if errors.Is(err, ErrCodeCollision) {
+		if errors.Is(err, ports.ErrCodeCollision) {
 			continue // extraordinarily rare; retry with a new code
 		}
 		return pair.Invite{}, fmt.Errorf("pairing: persist invite: %w", err)
@@ -138,7 +138,3 @@ func (s *Service) assertFree(ctx context.Context, userID string) error {
 		return fmt.Errorf("pairing: check free %s: %w", userID, err)
 	}
 }
-
-// ErrCodeCollision is returned by InviteRepo.Create when the code already
-// exists, signalling the service to retry with a fresh code.
-var ErrCodeCollision = errors.New("invite code collision")

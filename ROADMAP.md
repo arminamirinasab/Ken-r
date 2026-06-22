@@ -179,15 +179,15 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 - [x] Android: string resources fa (default) + en; RTL config; locale switch
 
 ### Real-time backbone
-- [~] Postgres schema (users, pairs, invites, widget_state, devices) — init SQL done; migration tooling TODO
-- [ ] WebSocket hub (connect/auth/presence) + Redis pub/sub fan-out
+- [~] Postgres schema (users, pairs, invites, widget_state, devices) — init SQL done (+ widget upsert unique index); migration tooling TODO
+- [~] Real-time hub + pub/sub fan-out — in-process event Bus (ports.EventPublisher/Subscriber) + SSE delivery stream done & tested; Redis adapter + WebSocket transport TODO (blocked on module fetch)
 - [ ] Pushe wake path when socket absent
-- [~] Generic widget-state event model — `ports.Event` + `widget_state` table done; publish→deliver wiring TODO
+- [x] Generic widget-state event model — `ports.Event` + `widget_state` table + publish→deliver wiring (Set → Bus.Publish → SSE) done & tested
 
 ### MVP Phase 1 features
-- [ ] Auth: phone OTP (Kavenegar) + session/JWT
-- [~] Pair System: invite code, accept, shared space, disconnect — domain + use cases + tests done; HTTP handlers + Postgres repos TODO
-- [ ] Mood Widget (simplest end-to-end vertical slice first)
+- [~] Auth: phone OTP + session — service (request/verify), Iranian phone normalize, session tokens, HTTP handlers, bearer middleware done & tested; Kavenegar SMS adapter TODO (dev uses log provider)
+- [~] Pair System: invite code, accept, shared space, disconnect — domain + use cases + HTTP handlers + in-memory repos done & tested; Postgres repos TODO
+- [~] Mood Widget — backend end-to-end slice (set/get + event publish + SSE deliver) done & tested; Android Glance wiring TODO
 - [ ] Love Tap Widget (+ tap-back loop)
 - [ ] Shared Drawing Widget
 - [ ] Shared Photo Widget (MinIO upload + downscale)
@@ -209,8 +209,18 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 - **App/package id:** `ir.kenar` (Iranian `.ir` namespace, matches distribution).
 - **Go module path:** `github.com/kenar/backend` (placeholder; swap to real
   self-hosted VCS path when chosen).
-- **Toolchain note:** Go is not installed in the current dev environment; backend
-  code is scaffolded and compiled/CI-verified once the Go toolchain is provisioned.
+- **Toolchain note:** Go 1.26 is now provisioned; backend builds, vets, and tests
+  green locally. External module fetch (pgx, redis, websocket, minio) is currently
+  blocked (TLS timeout to sum.golang.org), so those adapters are deferred and the
+  app runs on stdlib-only **in-memory adapters + in-process event bus** meanwhile.
+- **Real-time transport:** SSE (`GET /v1/stream`, stdlib) is the interim delivery
+  channel that closes the publish→deliver loop today. A WebSocket adapter sharing
+  the same event Bus replaces/augments it for bidirectional presence features once
+  the module fetch is unblocked. Transport is an adapter detail behind the Bus
+  ports, so swapping it does not touch the use cases.
+- **Local/dev wiring:** `cmd/server` wires in-memory repos + bus + a log-only SMS
+  provider (logs the OTP — DEV ONLY). Production swaps in Postgres/Redis/Kavenegar
+  implementing the same ports.
 - **E2E encryption:** server is a blind relay for payload blobs; key exchange
   between the two paired devices is a dedicated design task (see docs/ — TBD).
 
@@ -237,3 +247,27 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
   pairing use cases, add HTTP handlers for invite create/accept/disconnect, then
   the Redis pub/sub + WebSocket hub and the Mood end-to-end slice (act → publish
   → deliver → Glance update). Then phone OTP auth.
+
+- **2026-06-23** — Session 2: Go 1.26 provisioned (toolchain unblocked). Built the
+  real-time backbone + auth + pairing API end-to-end, stdlib-only, fully tested.
+  - android: committed the polished bilingual landing screen (gradient backdrop,
+    brand mark, fa/en segmented language toggle), expanded Material color tokens,
+    and the Gradle wrapper.
+  - backend domain: `domain/widget` (Kind, State, payload caps), `domain/auth`
+    (errors, OTP gen, Iranian phone normalize), `pair.ErrUserNotFound`.
+  - backend ports: `WidgetRepo`, `OTPRepo`, `SessionRepo`; moved `ErrCodeCollision`
+    into ports.
+  - adapters: `adapters/memory` (in-memory Users/Invites/Pairs/Devices/Widgets/
+    OTP/Sessions + in-process pub/sub `Bus`), `adapters/sms` log provider (dev).
+  - use cases: `app/auth` (RequestOTP/VerifyOTP/Authenticate), `app/widgets`
+    (Set→persist+publish / Latest).
+  - httpapi: bearer-session middleware, domain-error→HTTP+i18n mapping, handlers
+    for auth/pairing/devices/widgets, and an SSE `/v1/stream` delivery endpoint;
+    full httptest flow incl. SSE event delivery.
+  - i18n: added otp/session/widget/invite keys to fa + en.
+  - infra: widget upsert unique index.
+  - wired `cmd/server` on in-memory adapters; `go build`/`vet`/`test` all green.
+  **Next session:** Postgres + Redis adapters (once module fetch is unblocked) to
+  replace the in-memory repos and bus; Kavenegar SMS adapter; WebSocket transport
+  alongside SSE; then wire the Android Mood Glance widget to the new endpoints
+  (otp login → pair → set/get mood → stream-driven widget refresh).
