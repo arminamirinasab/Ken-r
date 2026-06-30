@@ -191,7 +191,8 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 - [~] Love Tap Widget (+ tap-back loop) — Android domain model + Glance
   widget shell with quick actions/tap-back queue done; sync upload/delivery
   wiring TODO with Android data layer
-- [ ] Shared Drawing Widget
+- [~] Shared Drawing Widget — Android compact drawing wire model + passive
+  Glance renderer done; in-app drawing canvas and sync upload/delivery TODO
 - [ ] Shared Photo Widget (MinIO upload + downscale)
 - [ ] Countdown Widget
 - [ ] "Their World" widget
@@ -287,3 +288,17 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
   **Next session:** wire the Android data/sync layer so queued Love Taps and Mood
   updates are uploaded/fetched through the existing auth/pair/widget endpoints,
   then mark Mood/Love Tap complete once real delivery refreshes Glance state.
+
+- **2026-06-30** — Session 4: Added the Android Shared Drawing widget vertical
+  slice:
+  - android domain: `SharedDrawing`, `DrawingStroke`, and `DrawingPoint` with a
+    compact bounded wire format suitable for the existing generic `drawing`
+    widget endpoint.
+  - android widget: passive Glance `DrawingWidget` registered in the manifest,
+    with a small bitmap renderer for partner sketches plus widget picker
+    metadata/preview.
+  - localization/tests: added fa/en drawing strings and `SharedDrawingTest` for
+    wire round-trips, malformed payload handling, coordinate clamping, and empty
+    drawings.
+  **Next session:** add the in-app drawing canvas + Android sync writer so local
+  sketches are encrypted/uploaded and partner payloads refresh Glance state.

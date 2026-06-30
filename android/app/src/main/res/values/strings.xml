@@ -32,6 +32,13 @@
     <string name="mood_angry">عصبانی</string>
     <string name="mood_waiting">در انتظار حال او…</string>
 
+    <!-- Shared Drawing widget -->
+    <string name="drawing_title">نقاشی مشترک</string>
+    <string name="drawing_waiting">در انتظار اولین نقاشی او…</string>
+    <string name="drawing_content_description">آخرین نقاشی او</string>
+    <string name="drawing_updated">نقاشی تازه رسید</string>
+    <string name="drawing_preview_mark">♡</string>
+
     <!-- Love Tap widget -->
     <string name="love_title">ضربان عاشقانه</string>
     <string name="love_i_love_you">دوستت دارم</string>

@@ -28,6 +28,13 @@
     <string name="mood_angry">Angry</string>
     <string name="mood_waiting">Waiting for their mood…</string>
 
+    <!-- Shared Drawing widget -->
+    <string name="drawing_title">Shared Drawing</string>
+    <string name="drawing_waiting">Waiting for their first drawing…</string>
+    <string name="drawing_content_description">Their latest drawing</string>
+    <string name="drawing_updated">A fresh drawing arrived</string>
+    <string name="drawing_preview_mark">♡</string>
+
     <!-- Love Tap widget -->
     <string name="love_title">Love Tap</string>
     <string name="love_i_love_you">I love you</string>

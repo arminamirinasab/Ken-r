@@ -56,5 +56,17 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/love_tap_widget_info" />
         </receiver>
+
+        <!-- Shared Drawing widget — passive renderer for partner sketches. -->
+        <receiver
+            android:name=".widget.drawing.DrawingWidgetReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/drawing_widget_info" />
+        </receiver>
     </application>
 </manifest>
