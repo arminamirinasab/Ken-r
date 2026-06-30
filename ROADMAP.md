@@ -188,7 +188,9 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 - [~] Auth: phone OTP + session — service (request/verify), Iranian phone normalize, session tokens, HTTP handlers, bearer middleware done & tested; Kavenegar SMS adapter TODO (dev uses log provider)
 - [~] Pair System: invite code, accept, shared space, disconnect — domain + use cases + HTTP handlers + in-memory repos done & tested; Postgres repos TODO
 - [~] Mood Widget — backend end-to-end slice (set/get + event publish + SSE deliver) done & tested; Android Glance wiring TODO
-- [ ] Love Tap Widget (+ tap-back loop)
+- [~] Love Tap Widget (+ tap-back loop) — Android domain model + Glance
+  widget shell with quick actions/tap-back queue done; sync upload/delivery
+  wiring TODO with Android data layer
 - [ ] Shared Drawing Widget
 - [ ] Shared Photo Widget (MinIO upload + downscale)
 - [ ] Countdown Widget
@@ -271,3 +273,17 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
   replace the in-memory repos and bus; Kavenegar SMS adapter; WebSocket transport
   alongside SSE; then wire the Android Mood Glance widget to the new endpoints
   (otp login → pair → set/get mood → stream-driven widget refresh).
+
+- **2026-06-30** — Session 3: Added the Android Love Tap widget vertical slice
+  without requiring local build tooling:
+  - android: `LoveTap` domain model with stable wire values and bilingual labels;
+    Glance `LoveTapWidget` registered in the manifest with widget metadata and a
+    picker preview.
+  - tap-back loop: widget can queue primary quick actions and `caught_it` replies
+    into Glance state for the future sync layer to encrypt/upload through the
+    existing generic `love_tap` widget backend kind.
+  - tests: added `LoveTapTest` for wire round-trips, uniqueness, and tap-back
+    exclusion from primary actions.
+  **Next session:** wire the Android data/sync layer so queued Love Taps and Mood
+  updates are uploaded/fetched through the existing auth/pair/widget endpoints,
+  then mark Mood/Love Tap complete once real delivery refreshes Glance state.

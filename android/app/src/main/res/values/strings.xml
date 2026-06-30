@@ -33,11 +33,15 @@
     <string name="mood_waiting">در انتظار حال او…</string>
 
     <!-- Love Tap widget -->
+    <string name="love_title">ضربان عاشقانه</string>
     <string name="love_i_love_you">دوستت دارم</string>
     <string name="love_i_miss_you">دلم برات تنگ شده</string>
     <string name="love_good_night">شب بخیر</string>
     <string name="love_good_morning">صبح بخیر</string>
     <string name="love_caught_it">گرفتمش 💛</string>
+    <string name="love_waiting">هنوز پیام کوچکی از او نرسیده…</string>
+    <string name="love_action_respond">پاسخ: گرفتمش</string>
+    <string name="love_last_sent">آخرین ارسال: %1$s</string>
 
     <!-- Settings -->
     <string name="settings_title">تنظیمات</string>

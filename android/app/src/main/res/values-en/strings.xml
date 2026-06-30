@@ -29,11 +29,15 @@
     <string name="mood_waiting">Waiting for their mood…</string>
 
     <!-- Love Tap widget -->
+    <string name="love_title">Love Tap</string>
     <string name="love_i_love_you">I love you</string>
     <string name="love_i_miss_you">I miss you</string>
     <string name="love_good_night">Good night</string>
     <string name="love_good_morning">Good morning</string>
     <string name="love_caught_it">Caught it 💛</string>
+    <string name="love_waiting">No little message from them yet…</string>
+    <string name="love_action_respond">Reply: caught it</string>
+    <string name="love_last_sent">Last sent: %1$s</string>
 
     <!-- Settings -->
     <string name="settings_title">Settings</string>
