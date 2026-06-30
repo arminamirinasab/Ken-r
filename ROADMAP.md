@@ -198,7 +198,8 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
   sync TODO
 - [~] Countdown Widget — Android countdown snapshot wire model + passive Glance
   renderer done; date editor and daily sync refresh TODO
-- [ ] "Their World" widget
+- [~] "Their World" widget — Android partner world snapshot model + passive
+  Glance renderer done; location/weather sync and privacy UX TODO
 - [ ] Presence Pulse / Hold Hands
 - [ ] Sealed "Open When…" messages
 - [ ] Dual daily photo reveal
@@ -331,3 +332,20 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
     malformed payload handling.
   **Next session:** build the Android date editor + sync writer so shared dates
   are uploaded and refreshed daily with locale/Jalali-aware labels.
+
+- **2026-06-30** — Session 7: Added the Android "Their World" widget vertical
+  slice and audited the five recently added widgets:
+  - backend: added `their_world` as a valid generic widget kind so future sync
+    can use `/v1/widgets/their_world` without schema changes.
+  - android domain: `TheirWorld`, `WeatherCondition`, and `DayNightState` with a
+    bounded wire format for partner location label, local time, UTC offset,
+    weather, temperature, day/night state, and observation time.
+  - android widget: passive Glance `TheirWorldWidget` registered in the manifest,
+    showing partner time, weather, and day/night from a precomputed snapshot.
+  - verification: re-parsed Android XML resources, checked layout text binding,
+    ran git whitespace checks, and reviewed Love Tap, Shared Drawing, Shared
+    Photo, Countdown, and Their World for passive rendering, bilingual
+    resources, widget metadata, and backend kind compatibility; no build
+    execution was possible in this environment.
+  **Next session:** implement Android sync/data layer foundations so Mood, Love
+  Tap, Drawing, Photo, Countdown, and Their World can start moving real payloads.

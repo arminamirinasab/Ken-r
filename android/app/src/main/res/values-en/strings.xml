@@ -55,6 +55,23 @@
         <item quantity="other">%1$d days ago</item>
     </plurals>
 
+    <!-- Their World widget -->
+    <string name="world_title">Their World</string>
+    <string name="world_waiting">Waiting for their world today…</string>
+    <string name="world_local_time">Their time: %1$s</string>
+    <string name="world_weather_with_temp">%1$s, %2$d°</string>
+    <string name="world_day">Day</string>
+    <string name="world_night">Night</string>
+    <string name="world_weather_clear">Clear</string>
+    <string name="world_weather_cloudy">Cloudy</string>
+    <string name="world_weather_rain">Rainy</string>
+    <string name="world_weather_snow">Snowy</string>
+    <string name="world_weather_storm">Stormy</string>
+    <string name="world_weather_fog">Foggy</string>
+    <string name="world_weather_windy">Windy</string>
+    <string name="world_weather_unknown">Weather unknown</string>
+    <string name="world_preview_value">22:14 · Clear</string>
+
     <!-- Love Tap widget -->
     <string name="love_title">Love Tap</string>
     <string name="love_i_love_you">I love you</string>

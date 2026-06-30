@@ -19,15 +19,17 @@ const (
 	KindLoveTap   Kind = "love_tap"
 	KindDrawing   Kind = "drawing"
 	KindPhoto     Kind = "photo"
-	KindCountdown Kind = "countdown"
+	KindCountdown  Kind = "countdown"
+	KindTheirWorld Kind = "their_world"
 )
 
 var validKinds = map[Kind]bool{
-	KindMood:      true,
-	KindLoveTap:   true,
-	KindDrawing:   true,
-	KindPhoto:     true,
-	KindCountdown: true,
+	KindMood:       true,
+	KindLoveTap:    true,
+	KindDrawing:    true,
+	KindPhoto:      true,
+	KindCountdown:  true,
+	KindTheirWorld: true,
 }
 
 // Valid reports whether k is a known widget kind.

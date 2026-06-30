@@ -59,6 +59,23 @@
         <item quantity="other">%1$d روز گذشت</item>
     </plurals>
 
+    <!-- Their World widget -->
+    <string name="world_title">دنیای او</string>
+    <string name="world_waiting">در انتظار دنیای امروز او…</string>
+    <string name="world_local_time">ساعت او: %1$s</string>
+    <string name="world_weather_with_temp">%1$s، %2$d°</string>
+    <string name="world_day">روز</string>
+    <string name="world_night">شب</string>
+    <string name="world_weather_clear">صاف</string>
+    <string name="world_weather_cloudy">ابری</string>
+    <string name="world_weather_rain">بارانی</string>
+    <string name="world_weather_snow">برفی</string>
+    <string name="world_weather_storm">طوفانی</string>
+    <string name="world_weather_fog">مه‌آلود</string>
+    <string name="world_weather_windy">بادخیز</string>
+    <string name="world_weather_unknown">آب‌وهوا نامشخص</string>
+    <string name="world_preview_value">۲۲:۱۴ · صاف</string>
+
     <!-- Love Tap widget -->
     <string name="love_title">ضربان عاشقانه</string>
     <string name="love_i_love_you">دوستت دارم</string>
