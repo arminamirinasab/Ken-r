@@ -196,7 +196,8 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 - [~] Shared Photo Widget (MinIO upload + downscale) — Android photo metadata
   wire model + downscaled cached Glance renderer done; MinIO upload/download
   sync TODO
-- [ ] Countdown Widget
+- [~] Countdown Widget — Android countdown snapshot wire model + passive Glance
+  renderer done; date editor and daily sync refresh TODO
 - [ ] "Their World" widget
 - [ ] Presence Pulse / Hold Hands
 - [ ] Sealed "Open When…" messages
@@ -317,3 +318,16 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
     validation plus widget bitmap sampling.
   **Next session:** implement the Android photo capture/pick + sync handoff, then
   the MinIO backend adapter when external module fetch is available.
+
+- **2026-06-30** — Session 6: Added the Android Countdown widget vertical slice:
+  - android domain: `Countdown` snapshot model with bounded wire format for
+    title, target epoch-day, precomputed remaining days, as-of day, and optional
+    localized target label.
+  - android widget: passive Glance `CountdownWidget` registered in the manifest,
+    rendering only the snapshot written by the future sync layer rather than
+    doing date/calendar computation inside the widget.
+  - localization/tests: added fa/en countdown strings/plurals, widget picker
+    metadata/preview, and `CountdownTest` for round-trips, state mapping, and
+    malformed payload handling.
+  **Next session:** build the Android date editor + sync writer so shared dates
+  are uploaded and refreshed daily with locale/Jalali-aware labels.

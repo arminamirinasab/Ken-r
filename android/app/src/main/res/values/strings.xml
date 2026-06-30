@@ -45,6 +45,20 @@
     <string name="photo_content_description">آخرین عکس او</string>
     <string name="photo_preview_mark">▧</string>
 
+    <!-- Countdown widget -->
+    <string name="countdown_title">شمارش معکوس</string>
+    <string name="countdown_waiting">هنوز تاریخی با هم انتخاب نکرده‌اید…</string>
+    <string name="countdown_today">امروز</string>
+    <string name="countdown_preview_value">۱۲ روز</string>
+    <plurals name="countdown_days_remaining">
+        <item quantity="one">%1$d روز مانده</item>
+        <item quantity="other">%1$d روز مانده</item>
+    </plurals>
+    <plurals name="countdown_days_passed">
+        <item quantity="one">%1$d روز گذشت</item>
+        <item quantity="other">%1$d روز گذشت</item>
+    </plurals>
+
     <!-- Love Tap widget -->
     <string name="love_title">ضربان عاشقانه</string>
     <string name="love_i_love_you">دوستت دارم</string>
